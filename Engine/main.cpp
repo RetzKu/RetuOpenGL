@@ -146,11 +146,6 @@ int SceneLoop(Game* GameObject)
 		/*Main Loop*/
 		window->clear();
 
-		//auto Delta = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - DeltaTime);//calculating delta
-		//if ((float)Delta.count() > TimeInteval) //this if statement limits program to 60fps; Only for stuff inside this loop. everything else is running freely
-		//{
-		/*RENDERING UPDATES*/
-		GameObject->shader->enable();
 
 		GameObject->RenderLayers(); //Renderoi kaikki layerit jotka on annettu Gameobject classille
 		window->update(); //ikkunan swap

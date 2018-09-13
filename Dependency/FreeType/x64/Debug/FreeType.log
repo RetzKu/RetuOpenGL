@@ -1,0 +1,89 @@
+﻿  winfnt.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\winfonts\winfnt.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  type42.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\type42\type42.c(20): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  type1.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\type1\type1.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  truetype.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\truetype\truetype.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  smooth.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\smooth\smooth.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  sfnt.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\sfnt\sfnt.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  raster.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\raster\raster.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  psmodule.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\psnames\psmodule.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  pshinter.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\pshinter\pshinter.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  psaux.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\psaux\psaux.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  pfr.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\pfr\pfr.c(20): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  pcf.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\pcf\pcf.c(31): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftlzw.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\lzw\ftlzw.c(25): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftgzip.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\gzip\ftgzip.c(23): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  type1cid.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\cid\type1cid.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  cff.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\cff\cff.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftcache.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\cache\ftcache.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  bdf.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\bdf\bdf.c(29): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftxf86.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftxf86.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftwinfnt.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftwinfnt.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  Generating Code...
+  Compiling...
+  fttype1.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\fttype1.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftsystem.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftsystem.c(28): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftsynth.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftsynth.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftstroke.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftstroke.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftpfr.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftpfr.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftpatent.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftpatent.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftotval.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftotval.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftmm.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftmm.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftlcdfil.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftlcdfil.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftinit.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftinit.c(40): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftgxval.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftgxval.c(28): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftglyph.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftglyph.c(31): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftgasp.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftgasp.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftfstype.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftfstype.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftdebug.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftdebug.c(44): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftbitmap.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftbitmap.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftbbox.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftbbox.c(27): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftbase.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\base\ftbase.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  autofit.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\src\autofit\autofit.c(20): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  vector.c
+  Generating Code...
+  Compiling...
+  texture-font.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\freetype-gl\texture-font.c(34): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  texture-atlas.c
+c:\users\loyalisti\source\repos\retuopengl\dependency\freetype\freetype-gl\opengl.h(46): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+  platform.c
+  Generating Code...

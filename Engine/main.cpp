@@ -132,25 +132,19 @@ int SceneLoop(Game* GameObject)
 	/*Background color*/
 	glClearColor(0,0,0, 1);
 
-	/*given translation is groups point of origin*/
-	//Group* LeftColliders = new Group(Maths::mat4::translation(Maths::vec3(10.0f, 0.0f, 0.0f)));
-
-	/*Adding player to layer within main Gameobject class*/
 
 	std::chrono::time_point<std::chrono::system_clock> DeltaTime = std::chrono::system_clock::now();//start point for deltatime;
 	float TimeInteval = (int)((1.0f / 82.0f) * 1000);//giving deltatime tickrate; this is good until hitting under 60fps; ;
 
 	GameObject->Layers[0]->add(new PhysicsObject(0, 10, 1, 1, new Texture("Pekka2.bmp"), 100));
+
 	while (!window->closed())
 	{
 		/*Main Loop*/
 		window->clear();
 
-
 		GameObject->RenderLayers(); //Renderoi kaikki layerit jotka on annettu Gameobject classille
 		window->update(); //ikkunan swap
-		//}
-
 	}
 	return 0;
 }

@@ -9,8 +9,8 @@ namespace Engine {namespace Graphics
 		_collider = false;
 	}
 	
-	void Label::submit(Renderer2D* renderer) const
-	{
-		renderer->drawString(Text, _position, _color);
-	}
+	//void Label::submit(BatchRenderer2D* renderer) const
+	//{
+	//	renderer->drawString(Text, _position, _color);
+	//}
 }}

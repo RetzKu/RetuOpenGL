@@ -22,15 +22,16 @@ namespace Engine { namespace Graphics {
 		_renderables.push_back(renderable);
 	}
 
-	void Group::submit(Renderer2D* renderer) const
+	void Group::submit(BatchRenderer2D* renderer)
 	{
-		renderer->push(_transformationMatrix);
+		renderer->PushTransform(_transformationMatrix);
 		for(const Renderable2D* renderable : _renderables)
 		{
-			renderable->submit(renderer);
+			//renderable->submit(renderer);
 		}
-		renderer->pop();
+		renderer->PopTransform();
 	}
+
 	void Group::Rotate(float Degrees, Maths::vec3 Axis)
 	{
 		_transformationMatrix = _transformationMatrix.rotation(Degrees, Axis);
@@ -63,7 +64,7 @@ namespace Engine { namespace Graphics {
 	}
 	bool Group::CheckCollisionWithPoint(Maths::vec2 Point)
 	{
-		for (const Renderable2D* renderable : _renderables)
+		for (Renderable2D* renderable : _renderables)
 		{
 			if (renderable->IsCollider() == true)
 			{
@@ -90,7 +91,7 @@ namespace Engine { namespace Graphics {
 	}
 	bool Group::AABBCollisionCheck(Maths::mat4 TargetMatrix, Maths::vec3 TargetPos, Maths::vec2 TargetSize)
 	{
-		for (const Renderable2D* renderable : _renderables)
+		for (Renderable2D* renderable : _renderables)
 		{
 			if (renderable->IsCollider() == true)
 			{

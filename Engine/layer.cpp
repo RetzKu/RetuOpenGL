@@ -3,48 +3,55 @@
 
 namespace Engine { namespace Graphics {
 
-	Layer::Layer(Renderer2D* renderer, Shader* shader, Maths::mat4 projectionMatrix)
+	Layer::Layer(BatchRenderer2D* renderer, Shader* shader, Maths::mat4 projectionMatrix)
 	{
-		_renderer = renderer;
-		_shader = shader;
-		_projectionMatrix = projectionMatrix;
+		renderer = renderer;
+		shader = shader;
+		projectionMatrix = projectionMatrix;
 
-		_shader->enable();
-		_shader->setUniformMat4("pr_matrix", _projectionMatrix);
-		_shader->disable();
+		shader->enable();
+		shader->setUniformMat4("pr_matrix", projectionMatrix);
+		shader->disable();
+	}
+
+	Layer::Layer(Shader* shader)
+	{
+		this->renderer = new BatchRenderer2D();
+		this->shader = shader;
+		this->projectionMatrix = Maths::mat4::orthographic(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f);
 	}
 
 	Layer::~Layer()
 	{
-		delete _shader;
-		delete _renderer;
+		delete shader;
+		delete renderer;
 
-		for(int i = 0; i < _renderables.size(); i++)
+		for(int i = 0; i < renderables.size(); i++)
 		{
-			delete _renderables[i];
+			delete renderables[i];
 		}
 	}
 
 	void Layer::add(Renderable2D* renderable)
 	{
-		_renderables.push_back(renderable);
+		renderables.push_back(renderable);
 	}
 
 	void Layer::render()
 	{
-		_shader->enable();
-		_renderer->begin();
-		for(Renderable2D* renderable : _renderables)
+		shader->enable();
+		renderer->begin();
+		for(Renderable2D* renderable : renderables)
 		{
 			auto as = dynamic_cast<PhysicsObject*>(renderable);
 			if (as != nullptr)
 			{
 				as->Update();
 			}
-			renderable->submit(_renderer);
+			//renderable->submit(renderer);
 		}
 
-		_renderer->end();
-		_renderer->flush();
+		renderer->end();
+		renderer->flush();
 	}
 }}

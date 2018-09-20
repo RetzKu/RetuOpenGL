@@ -8,10 +8,7 @@
 #include "buffer.h"
 #include "indexbuffer.h"
 #include "vertexarray.h"
-#include "renderer2d.h"
 #include "renderable2d.h"
-#include "simple2drenderer.h"
-#include "static_sprite.h"
 #include "BatchRenderer2D.h"
 #include "sprite.h"
 #include <thread>

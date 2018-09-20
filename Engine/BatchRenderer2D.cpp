@@ -58,6 +58,9 @@ namespace Engine { namespace Graphics {
 
 		m_FTAtlas = ftgl::texture_atlas_new(512, 512, 2);
 		m_FTFont = ftgl::texture_font_new_from_file(m_FTAtlas, 32, "arial.ttf");
+
+		this->transformationStack.push_back(Maths::mat4::identity());
+		this->transformationBack = &transformationStack.back();
 	}
 
 	void BatchRenderer2D::begin()
@@ -67,13 +70,13 @@ namespace Engine { namespace Graphics {
 		_buffer = _bufferStart;
 	}
 
-	void BatchRenderer2D::submit(const Renderable2D* renderable)
+	void BatchRenderer2D::submit(Renderable2D* renderable)
 	{
-		const Maths::vec3& position = renderable->getPosition();
-		const Maths::vec2& size = renderable->getSize();
-		const Maths::vec4& color = renderable->getColor();
-		const std::vector<Maths::vec2>& uv = renderable->getUV();
-		const GLuint tid = renderable->getTID();
+		Maths::vec3 position = renderable->getPosition();
+		Maths::vec2 size = renderable->getSize();
+		Maths::vec4 color = renderable->getColor();
+		std::vector<Maths::vec2> uv = renderable->getUV();
+		GLuint tid = renderable->getTID();
 
 		unsigned int c = 0;
 
@@ -125,26 +128,26 @@ namespace Engine { namespace Graphics {
 		int a = color.w * 255.0f;			
 
 		c = a << 24 | b << 16 | g << 8 | r;
-		
-		_buffer->vertex = *_transformationBack * position;
+
+		_buffer->vertex = *transformationBack * position;
 		_buffer->uv = uv[0];
 		_buffer->tid = ts;
 		_buffer->color = c;
 		_buffer++;	
 
-		_buffer->vertex = *_transformationBack * Maths::vec3(position.x, position.y + size.y, position.z);
+		_buffer->vertex = *transformationBack * Maths::vec3(position.x, position.y + size.y, position.z);
 		_buffer->uv = uv[1];
 		_buffer->tid = ts;
 		_buffer->color = c;
 		_buffer++;
 
-		_buffer->vertex = *_transformationBack * Maths::vec3(position.x + size.x, position.y + size.y, position.z);
+		_buffer->vertex = *transformationBack * Maths::vec3(position.x + size.x, position.y + size.y, position.z);
 		_buffer->uv = uv[2];
 		_buffer->tid = ts;
 		_buffer->color = c;
 		_buffer++;
 
-		_buffer->vertex = *_transformationBack * Maths::vec3(position.x + size.x, position.y, position.z);
+		_buffer->vertex = *transformationBack * Maths::vec3(position.x + size.x, position.y, position.z);
 		_buffer->uv = uv[3];
 		_buffer->tid = ts;
 		_buffer->color = c;
@@ -153,7 +156,7 @@ namespace Engine { namespace Graphics {
 		_indexCount += 6;
 	}
 
-	void BatchRenderer2D::drawString(const std::string& text,const Maths::vec3& position,const Maths::vec4& color)
+	void BatchRenderer2D::drawString(std::string& text,Maths::vec3& position,Maths::vec4& color)
 	{
 		using namespace ftgl;
 
@@ -214,25 +217,25 @@ namespace Engine { namespace Graphics {
 				float u1 = glyph->s1;
 				float v1 = glyph->t1;
 
-				_buffer->vertex = *_transformationBack* Maths::vec3(x0, y0, 0);
+				_buffer->vertex = *transformationBack* Maths::vec3(x0, y0, 0);
 				_buffer->uv = Maths::vec2(u0, v0);
 				_buffer->tid = ts;
 				_buffer->color = unsintcolor;
 				_buffer++;
 				
-				_buffer->vertex = *_transformationBack* Maths::vec3(x0, y1, 0);
+				_buffer->vertex = *transformationBack* Maths::vec3(x0, y1, 0);
 				_buffer->uv = Maths::vec2(u0, v1);
 				_buffer->tid = ts;
 				_buffer->color = unsintcolor;;
 				_buffer++;
 
-				_buffer->vertex = *_transformationBack* Maths::vec3(x1, y1, 0);
+				_buffer->vertex = *transformationBack* Maths::vec3(x1, y1, 0);
 				_buffer->uv = Maths::vec2(u1, v1);
 				_buffer->tid = ts;
 				_buffer->color = unsintcolor;
 				_buffer++;
 
-				_buffer->vertex = *_transformationBack* Maths::vec3(x1, y0, 0);
+				_buffer->vertex = *transformationBack* Maths::vec3(x1, y0, 0);
 				_buffer->uv = Maths::vec2(u1, v0);
 				_buffer->tid = ts;
 				_buffer->color = unsintcolor;
@@ -294,5 +297,19 @@ namespace Engine { namespace Graphics {
 		_indexCount = 0;
 	}
 	
-
+	void BatchRenderer2D::PushTransform(Maths::mat4& matrix, bool overwrite)
+	{
+		if (overwrite) { transformationStack.push_back(matrix); }
+		else { transformationStack.push_back(transformationStack.back() * matrix); }
+		transformationBack = &transformationStack.back();
+	}
+	
+	void BatchRenderer2D::PopTransform()
+	{
+		if (transformationStack.size() > 1)
+		{
+			transformationStack.pop_back();
+		}
+		transformationBack = &transformationStack.back();
+	}
 }}

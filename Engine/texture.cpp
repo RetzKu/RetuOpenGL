@@ -26,8 +26,6 @@ namespace Engine { namespace Graphics {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 		glBindTexture(GL_TEXTURE_2D, 0);
 
-		// delete[] pixels;
-
 		return result;
 	}
 

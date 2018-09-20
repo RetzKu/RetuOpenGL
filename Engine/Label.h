@@ -1,6 +1,7 @@
 #pragma once
 
 #include "renderable2d.h"
+#include "BatchRenderer2D.h"
 
 namespace Engine{namespace Graphics
 {
@@ -8,7 +9,8 @@ namespace Engine{namespace Graphics
 	{
 	public:	
 		Label(std::string text, float x, float y, Maths::vec4 color);
-		void submit(Renderer2D* renderer)const override;
+		//TODO: Korjaa Label
+		//void submit(BatchRenderer2D* renderer)const override;
 
 		std::string Text;
 		float x, y;

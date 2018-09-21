@@ -111,9 +111,10 @@ void InitScene()
 {
 	Game* GameStruct = new Game();
 	GameStruct->shader = new Shader("basic.vert", "basic.frag");
+
 	GameStruct->shader->enable();
-	// Heitetään shadereillä valotusta
 	GameStruct->shader->setUniformMat2f("light_pos", vec2(4.0f, 1.5f));
+	GameStruct->shader->disable();
 	// Tehdään layeri
 	GameStruct->Layers.push_back(new Layer(GameStruct->shader));
 	GameStruct->ControlFunktionality = new TestClass(window, GameStruct->shader);
@@ -129,7 +130,9 @@ int SceneLoop(Game* GameObject)
 	std::chrono::time_point<std::chrono::system_clock> DeltaTime = std::chrono::system_clock::now();//start point for deltatime;
 	float TimeInteval = (int)((1.0f / 82.0f) * 1000);//giving deltatime tickrate; this is good until hitting under 60fps; ;
 
-	GameObject->Layers[0]->add(new Sprite(0, 0, 10, 10, new Texture("Pekka2.bmp"), false));
+
+	GameObject->Layers[0]->add(new Sprite(1, 0, 10, 10, new Texture("Pekka2.bmp"), false));
+
 	//GameObject->Layers[0]->add(new PhysicsObject(0, 10, 1, 1, new Texture("Pekka2.bmp"), 100));
 
 	while (!window->closed())
@@ -137,6 +140,7 @@ int SceneLoop(Game* GameObject)
 		/*Main Loop*/
 		window->clear();
 
+		GameObject->ControlFunktionality->GetCameraMovement();
 		GameObject->RenderLayers(); //Renderoi kaikki layerit jotka on annettu Gameobject classille
 		window->update(); //ikkunan swap
 	}

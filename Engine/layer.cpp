@@ -16,14 +16,18 @@ namespace Engine { namespace Graphics {
 
 	Layer::Layer(Shader* shader)
 	{
-		this->renderer = new BatchRenderer2D();
+		renderer = new BatchRenderer2D();
 		this->shader = shader;
-		this->projectionMatrix = Maths::mat4::orthographic(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f);
+		projectionMatrix = Maths::mat4::orthographic(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f);
+
+		shader->enable();
+		shader->setUniformMat4("pr_matrix", projectionMatrix);
+		shader->disable();
 	}
 
 	Layer::~Layer()
 	{
-		delete shader;
+		//delete shader;
 		delete renderer;
 
 		for(int i = 0; i < renderables.size(); i++)
@@ -48,9 +52,8 @@ namespace Engine { namespace Graphics {
 			{
 				as->Update();
 			}
-			//renderable->submit(renderer);
+			renderer->submit(renderable);
 		}
-
 		renderer->end();
 		renderer->flush();
 	}

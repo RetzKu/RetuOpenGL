@@ -40,7 +40,6 @@ public:
 	vec2 MouseWorldLocation();
 	vec2 MouseUILocation();
 	void SetUniforMat4(std::string UniformName, mat4 Ortho) { ShaderObject->setUniformMat4(UniformName.c_str(), Ortho); }
-	double GetCameraSpeed() { return CameraSpeed; }
 	void ButtonCooldownThread(bool* Cooldown);
 	void ResetCooldown() { Cooldown = false; }
 	void RotatePlayer(Group* PlayerGroup, vec2 At, vec2 Center);
@@ -60,7 +59,7 @@ private:
 	Shader* ShaderObject;
 	Window* WindowObject;
 	vec2 CameraCoordinates;
-	double CameraSpeed = 1;
+	float scale = 1;
 	bool Cooldown;
 	float time;
 };
@@ -131,36 +130,44 @@ void TestClass::GetCameraMovement()
 	time += 0.1f;
 	for (int i = 60; i < 95; i++)
 	{
-		//if (WindowObject->isKeyPressed(i))
-		//{
-		//	switch (i)
-		//	{
-		//	case GLFW_KEY_A:
-		//		CameraCoordinates.x -= 0.1*CameraSpeed;
-		//		break;
-		//	case GLFW_KEY_W:
-		//		CameraCoordinates.y += 0.1*CameraSpeed;
-		//		break;
-		//	case GLFW_KEY_D:
-		//		CameraCoordinates.x += 0.1*CameraSpeed;
-		//		break;
-		//	case GLFW_KEY_S:
-		//		CameraCoordinates.y -= 0.1*CameraSpeed;
-		//		break;
-		//	case GLFW_KEY_Q:
-		//		CameraSpeed += 0.1f;
-		//		break;
-		//	case GLFW_KEY_E:
-		//		if (CameraSpeed > 0) { CameraSpeed -= 0.1f; }
-		//		break;
-		//	default:
-		//		break;
-		//	}
-		//}
+		if (WindowObject->isKeyPressed(i))
+		{
+			switch (i)
+			{
+			case GLFW_KEY_A:
+				CameraCoordinates.x -= 0.01f;
+				break;
+			case GLFW_KEY_W:
+				CameraCoordinates.y += 0.01f;
+				break;
+			case GLFW_KEY_D:
+				CameraCoordinates.x += 0.01f;
+				break;
+			case GLFW_KEY_S:
+				CameraCoordinates.y -= 0.01f;
+				break;
+			case GLFW_KEY_Q:
+				scale += 0.01f;
+				break;
+			case GLFW_KEY_E:
+				if (scale > 0.01f)
+				{
+					scale -= 0.01f;
+				}
+				break;
+			default:
+				break;
+			}
+		}
 	}
-	mat4 ortho = mat4::orthographic( -AspectRatio.x + CameraCoordinates.x+100000000 , AspectRatio.x + CameraCoordinates.x + -100000000, -AspectRatio.y + CameraCoordinates.y + 100000000, AspectRatio.y + CameraCoordinates.y - 100000000, -1.0f, 1.0f);
-	ortho = ortho * mat4::rotation(time, Maths::vec3(0, 0, 1));
-	SetUniforMat4("pr_matrix", ortho);
+
+	Maths::mat4 ortho = Maths::mat4::identity();
+	//Maths::mat4 ortho = Maths::mat4::orthographic(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f);
+	//Maths::mat4 ortho =  mat4::rotation(time, Maths::vec3(0, 0, 1));
+	ortho = ortho.translation(vec3{CameraCoordinates.x,CameraCoordinates.y,0}) * ortho.scale(vec3{ 0.1f*scale,0.1f*scale,0.1f*scale });
+	ShaderObject->enable();
+	ShaderObject->setUniformMat4("vw_matrix", ortho);
+	ShaderObject->disable();
 }
 
 void TestClass::RotatePlayer(Group* PlayerGroup, vec2 At, vec2 Center)

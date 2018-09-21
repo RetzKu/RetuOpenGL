@@ -1,7 +1,6 @@
 #pragma once
 
-#include "renderable2d.h"
-#include "renderer2d.h"
+#include "BatchRenderer2D.h"
 
 
 namespace Engine {
@@ -9,17 +8,17 @@ namespace Engine {
 
 		class Layer
 		{
-		protected:
-			Renderer2D* _renderer;
-			std::vector<Renderable2D*> _renderables;
-			Shader* _shader;
-			Maths::mat4 _projectionMatrix;
-		protected:
-			Layer(Renderer2D* renderer, Shader* shader, Maths::mat4 projectionMatrix);
 		public:
-			virtual ~Layer();
+			Layer(Shader* shader);
+			~Layer();
 			virtual void add(Renderable2D* renderable);
 			virtual void render();
 
+		private:
+			BatchRenderer2D* renderer;
+			std::vector<Renderable2D*> renderables;
+			Shader* shader;
+			Maths::mat4 projectionMatrix;
+			Layer(BatchRenderer2D* renderer, Shader* shader, Maths::mat4 projectionMatrix);
 		};
 }} 

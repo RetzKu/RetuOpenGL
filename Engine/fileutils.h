@@ -4,7 +4,6 @@
 #include <fstream>
 #include <iostream>
 #include <stb_image.h>
-#include "timer.h"
 
 namespace Engine {
 
@@ -17,7 +16,6 @@ namespace Engine {
 		static unsigned char* LoadTextureFromFile(const std::string Filename);
 		int CoutFPS();
 	private:
-		Timer time;
 		float timer = 0.0f;
 		unsigned int frames = 0;
 	};

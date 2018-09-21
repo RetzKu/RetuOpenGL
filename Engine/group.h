@@ -1,8 +1,6 @@
 #pragma once
 
-
-#include "renderable2d.h"
-
+#include "BatchRenderer2D.h"
 
 namespace Engine { namespace Graphics {
 	
@@ -17,7 +15,7 @@ namespace Engine { namespace Graphics {
 		Group(const Maths::mat4& tranform);
 		~Group();
 		void add(Renderable2D* renderable);
-		void submit(Renderer2D* renderer) const override;
+		void submit(BatchRenderer2D* renderer);
 		void AddFromOrigin(Renderable2D* renderable, Maths::vec3 Towards)
 		{
 			renderable->AddMovement(Towards);

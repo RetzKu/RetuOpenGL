@@ -57,19 +57,10 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\else</Filter>
     </ClCompile>
-    <ClCompile Include="simple2drenderer.cpp">
-      <Filter>Source Files\else</Filter>
-    </ClCompile>
     <ClCompile Include="sprite.cpp">
       <Filter>Source Files\else</Filter>
     </ClCompile>
-    <ClCompile Include="static_sprite.cpp">
-      <Filter>Source Files\else</Filter>
-    </ClCompile>
     <ClCompile Include="texture.cpp">
-      <Filter>Source Files\else</Filter>
-    </ClCompile>
-    <ClCompile Include="tilelayer.cpp">
       <Filter>Source Files\else</Filter>
     </ClCompile>
     <ClCompile Include="vec2.cpp">
@@ -131,28 +122,13 @@
     <ClInclude Include="renderable2d.h">
       <Filter>Header Files\else</Filter>
     </ClInclude>
-    <ClInclude Include="renderer2d.h">
-      <Filter>Header Files\else</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Header Files\else</Filter>
-    </ClInclude>
-    <ClInclude Include="simple2drenderer.h">
       <Filter>Header Files\else</Filter>
     </ClInclude>
     <ClInclude Include="sprite.h">
       <Filter>Header Files\else</Filter>
     </ClInclude>
-    <ClInclude Include="static_sprite.h">
-      <Filter>Header Files\else</Filter>
-    </ClInclude>
     <ClInclude Include="texture.h">
-      <Filter>Header Files\else</Filter>
-    </ClInclude>
-    <ClInclude Include="tilelayer.h">
-      <Filter>Header Files\else</Filter>
-    </ClInclude>
-    <ClInclude Include="timer.h">
       <Filter>Header Files\else</Filter>
     </ClInclude>
     <ClInclude Include="vec2.h">

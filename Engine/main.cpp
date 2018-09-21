@@ -1,28 +1,24 @@
 #include "window.h"
+#include <stdio.h>
 #include <windows.h>
 #include <iostream>
+#include <chrono>
+#include <time.h>
+#include <thread>
+
 #include "Maths.h"
 #include "fileutils.h"
 #include "Shader.h"
 #include "buffer.h"
 #include "indexbuffer.h"
 #include "vertexarray.h"
-#include "renderer2d.h"
-#include "renderable2d.h"
-#include "simple2drenderer.h"
-#include "static_sprite.h"
-#include <chrono>
 #include "BatchRenderer2D.h"
 #include "sprite.h"
-#include <time.h>
-#include "timer.h"
-#include <thread>
 #include "MikaTestijuttuja.h"
-#include "tilelayer.h"
 #include "group.h"
 #include "Label.h"
 #include "texture.h"
-#include <stdio.h>
+#include "layer.h"
 
 #include "PhysicsObject.h"
 
@@ -47,7 +43,7 @@ public:
 	{
 		if (Layers.size() > 0)
 		{
-			for (TileLayer* LayerObject : Layers)
+			for (Layer* LayerObject : Layers)
 			{
 				delete LayerObject;
 			}
@@ -68,7 +64,7 @@ public:
 	/*USED CLASSES FOR GAMEOBJECT*/
 	Shader* shader;
 	TestClass* ControlFunktionality;
-	std::vector<TileLayer*> Layers;
+	std::vector<Layer*> Layers;
 	std::vector<Group*> Groups;
 	FileUtils utils;
 
@@ -104,6 +100,8 @@ int main()
 	FileUtils utils;
 	// Asetetaan ikkunan parametrit
 
+	glClearColor(0,0,0, 1);
+
 	std::cout << "Window Width: " << window->getWidth() << +" Height: " << window->getHeight() << std::endl;
 	InitScene();
 	return 0;
@@ -117,26 +115,22 @@ void InitScene()
 	// Heitetään shadereillä valotusta
 	GameStruct->shader->setUniformMat2f("light_pos", vec2(4.0f, 1.5f));
 	// Tehdään layeri
-	GameStruct->Layers.push_back(new TileLayer(GameStruct->shader));
+	GameStruct->Layers.push_back(new Layer(GameStruct->shader));
 	GameStruct->ControlFunktionality = new TestClass(window, GameStruct->shader);
 	GameStruct->ControlFunktionality->GetCameraMovement();
 	SceneLoop(GameStruct);
 }
+
 int SceneLoop(Game* GameObject)
 {
-	bool Running = true;
-
-	/*Updatable Variables*/
-	Maths::vec2 MousePos;
-
 	/*Background color*/
-	glClearColor(0,0,0, 1);
 
 
 	std::chrono::time_point<std::chrono::system_clock> DeltaTime = std::chrono::system_clock::now();//start point for deltatime;
 	float TimeInteval = (int)((1.0f / 82.0f) * 1000);//giving deltatime tickrate; this is good until hitting under 60fps; ;
 
-	GameObject->Layers[0]->add(new PhysicsObject(0, 10, 1, 1, new Texture("Pekka2.bmp"), 100));
+	GameObject->Layers[0]->add(new Sprite(0, 0, 10, 10, new Texture("Pekka2.bmp"), false));
+	//GameObject->Layers[0]->add(new PhysicsObject(0, 10, 1, 1, new Texture("Pekka2.bmp"), 100));
 
 	while (!window->closed())
 	{

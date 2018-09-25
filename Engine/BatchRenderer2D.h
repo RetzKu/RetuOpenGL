@@ -5,6 +5,7 @@
 #include "Maths.h"
 #include <vector>
 #include "renderable2d.h"
+#include "Label.h"
 #include "Shader.h"
 
 
@@ -61,7 +62,7 @@ namespace Engine { namespace Graphics {
 		~BatchRenderer2D();
 		void begin();
 		void submit(Renderable2D* renderable);
-		void drawString(std::string& text,Maths::vec3& position,Maths::vec4& color);
+		void drawString(Label* renderable);
 		void end();
 		void flush();
 

@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{45DA18D1-0C45-4E2E-A656-B437E1175F40}</ProjectGuid>
     <RootNamespace>Engine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -79,7 +79,7 @@
     <OutDir>$(SolutionDir)Output\Engine\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\Engine\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)Dependency\;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Loyalisti\source\repos\RetuOpenGL\Dependency\FreeImage\lib;C:\Users\Loyalisti\source\repos\RetuOpenGL\Dependency\GLFW\lib;C:\Users\Loyalisti\source\repos\RetuOpenGL\Dependency\Glew\libs;$(SolutionDir)Output\Freetype\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\Dependency\FreeImage\lib;$(SolutionDir)\Dependency\GLFW\lib;$(SolutionDir)\Dependency\Glew\libs;$(SolutionDir)Output\Freetype\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

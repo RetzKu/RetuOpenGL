@@ -21,6 +21,8 @@ using namespace Maths;
 #define SCREENWIDTH 960
 #define SCREENHEIGHT 540
 
+float CalculateDirectionVector(vec2 v1, vec2 v2);
+
 class TestClass
 {
 public:
@@ -161,13 +163,24 @@ void TestClass::GetCameraMovement()
 		}
 	}
 
+	std::cout << "Distance: " << CalculateDirectionVector(vec2(0,0),CameraCoordinates) << std::endl;
+
 	Maths::mat4 ortho = Maths::mat4::identity();
-	//Maths::mat4 ortho = Maths::mat4::orthographic(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f);
-	//Maths::mat4 ortho =  mat4::rotation(time, Maths::vec3(0, 0, 1));
 	ortho = ortho.translation(vec3{CameraCoordinates.x,CameraCoordinates.y,0}) * ortho.scale(vec3{ 0.1f*scale,0.1f*scale,0.1f*scale });
 	ShaderObject->enable();
 	ShaderObject->setUniformMat4("vw_matrix", ortho);
 	ShaderObject->disable();
+}
+
+float CalculateDirectionVector(vec2 v1, vec2 v2)
+{
+	vec2 temp(0, 0);
+	
+	temp = v1 - v2;
+	float dist = temp.x * temp.x + temp.y*temp.y;
+	dist = sqrt(dist);
+
+	return dist;
 }
 
 void TestClass::RotatePlayer(Group* PlayerGroup, vec2 At, vec2 Center)

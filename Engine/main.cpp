@@ -126,14 +126,11 @@ int SceneLoop(Game* GameObject)
 {
 	/*Background color*/
 
-
 	std::chrono::time_point<std::chrono::system_clock> DeltaTime = std::chrono::system_clock::now();//start point for deltatime;
 	float TimeInteval = (int)((1.0f / 82.0f) * 1000);//giving deltatime tickrate; this is good until hitting under 60fps; ;
 
-
-	GameObject->Layers[0]->add(new Sprite(1, 0, 10, 10, new Texture("Pekka2.bmp"), false));
-
-	//GameObject->Layers[0]->add(new PhysicsObject(0, 10, 1, 1, new Texture("Pekka2.bmp"), 100));
+	GameObject->Layers[0]->add(new Label("Test Label", 1, 0, vec4(0.5, 0.5, 0, 1)));
+	//GameObject->Layers[0]->add(new Sprite(1, 0, 10, 10, new Texture("Pekka2.bmp"), false));
 
 	while (!window->closed())
 	{

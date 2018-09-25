@@ -47,12 +47,15 @@ namespace Engine { namespace Graphics {
 		renderer->begin();
 		for(Renderable2D* renderable : renderables)
 		{
-			auto as = dynamic_cast<PhysicsObject*>(renderable);
-			if (as != nullptr)
-			{
-				as->Update();
+			if (renderable->isText) 
+			{ 
+				Label* test = static_cast<Label*>(renderable);
+				renderer->drawString(test); 
 			}
-			renderer->submit(renderable);
+			else 
+			{
+				renderer->submit(renderable);
+			}
 		}
 		renderer->end();
 		renderer->flush();

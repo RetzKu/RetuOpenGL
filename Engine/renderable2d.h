@@ -41,6 +41,8 @@ namespace Engine { namespace Graphics
 			bool IsCollider() { return _collider; }
 
 			GLuint getTID() { return _texture ? _texture->getID() : 0; }
+
+			bool isText = false;
 		private:
 			void setUVDefaults()
 			{

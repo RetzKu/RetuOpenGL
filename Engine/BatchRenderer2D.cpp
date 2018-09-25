@@ -156,9 +156,13 @@ namespace Engine { namespace Graphics {
 		_indexCount += 6;
 	}
 
-	void BatchRenderer2D::drawString(std::string& text,Maths::vec3& position,Maths::vec4& color)
+	//void BatchRenderer2D::drawString(std::string& text,Maths::vec3& position,Maths::vec4& color)
+	void BatchRenderer2D::drawString(Label* renderable)
 	{
 		using namespace ftgl;
+		Maths::vec4 color = renderable->getColor();
+		Maths::vec3 position = renderable->getPosition();
+		std::string text = renderable->Text;
 
 		int r = color.x * 255.0f;
 		int g = color.y * 255.0f;

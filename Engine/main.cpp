@@ -21,6 +21,7 @@
 #include "layer.h"
 
 #include "PhysicsObject.h"
+#include "ClassMath.h"
 
 // Jos haluat printit p‰‰lle, t‰ss‰ 1, jos et valitse 0
 #define DEBUG 1
@@ -129,8 +130,17 @@ int SceneLoop(Game* GameObject)
 	std::chrono::time_point<std::chrono::system_clock> DeltaTime = std::chrono::system_clock::now();//start point for deltatime;
 	float TimeInteval = (int)((1.0f / 82.0f) * 1000);//giving deltatime tickrate; this is good until hitting under 60fps; ;
 
-	GameObject->Layers[0]->add(new Label("Test Label", 1, 0, vec4(0.5, 0.5, 0, 1)));
-	//GameObject->Layers[0]->add(new Sprite(1, 0, 10, 10, new Texture("Pekka2.bmp"), false));
+	//normaali = N = (x2 - x1) * (x3 - x1) Kuinka lasketaan kappaleen normaali;
+
+	//TODO: font_atlas on luultavasti taas hajalla. FIx this please; Low priority;
+	//GameObject->Layers[0]->add(new Label("Test Label", 1, 0, vec4(0.5, 0.5, 0, 1)));
+
+	GameObject->Layers[0]->add(new Sprite(1, 0, 10, 10, new Texture("Pekka2.bmp"), false));
+
+	vec3 triange[3] = { {1,0,0},{1,2,0},{1,-1,1} };
+
+
+	CalculateNormal(triange);
 
 	while (!window->closed())
 	{

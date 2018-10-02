@@ -149,5 +149,8 @@
     <ClInclude Include="PhysicsObject.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="ClassMath.h">
+      <Filter>Header Files\else</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

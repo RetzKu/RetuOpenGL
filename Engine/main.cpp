@@ -33,6 +33,8 @@
 	#define CONSOLEND(x)
 #endif
 
+//http://www.assimp.org/
+
 //Constructs GLFW Window publicly
 Window* window = new Window("Engine", SCREENWIDTH, SCREENHEIGHT);
 
@@ -135,12 +137,7 @@ int SceneLoop(Game* GameObject)
 	//TODO: font_atlas on luultavasti taas hajalla. FIx this please; Low priority;
 	//GameObject->Layers[0]->add(new Label("Test Label", 1, 0, vec4(0.5, 0.5, 0, 1)));
 
-	GameObject->Layers[0]->add(new Sprite(1, 0, 10, 10, new Texture("Pekka2.bmp"), false));
-
-	vec3 triange[3] = { {1,0,0},{1,2,0},{1,-1,1} };
-
-
-	CalculateNormal(triange);
+	GameObject->Layers[0]->add(new Sprite(0, 0, 10, 10, new Texture("Pekka2.bmp"), false));
 
 	while (!window->closed())
 	{

@@ -18,7 +18,7 @@ namespace Engine {
 		{
 			pointA = std::chrono::high_resolution_clock::now();
 			this->mass = density * width*height;
-			_texture = texture;
+			this->texture = texture;
 			this->defaultDrag = 10;
 		}
 
@@ -39,9 +39,9 @@ namespace Engine {
 			float partialsecond = s.count();
 			partialsecond = partialsecond / 1000000;
 			AddGravity(partialsecond);
-			this->_position.x += velocity.x*partialsecond;
-			this->_position.y += velocity.y*partialsecond;
-			std::cout << "X: " << this->_position.x << " Y: " << this->_position.y << std::endl;
+			this->position.x += velocity.x*partialsecond;
+			this->position.y += velocity.y*partialsecond;
+			std::cout << "X: " << this->position.x << " Y: " << this->position.y << std::endl;
 			//std::cout << "X: " << this->velocity.x << " Y: " << this->velocity.y << std::endl;
 		}
 

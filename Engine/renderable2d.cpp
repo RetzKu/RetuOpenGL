@@ -2,23 +2,23 @@
 
 void Engine::Graphics::Renderable2D::AddMovement(Maths::vec3 Towards)
 {
-	_position.x += Towards.x;
-	_position.y += Towards.y;
-	_position.z += Towards.z;
+	position.x += Towards.x;
+	position.y += Towards.y;
+	position.z += Towards.z;
 }
 
 void Engine::Graphics::Renderable2D::UpdateSize()
 {
 	if (startsize.x > 1)
 	{
-		float tmp = _size.x / 7;
-		_size.x = (startsize.x + 8) - _distancemoved;
-		_position.x = startposition.x + 2 - _size.x / 2;
+		float tmp = size.x / 7;
+		size.x = (startsize.x + 8) - _distancemoved;
+		position.x = startposition.x + 2 - size.x / 2;
 	}
 	else if (startsize.y > 1)
 	{
-		float tmp = _size.y / 7;
-		_size.y = (startsize.y + 8) - _distancemoved;
-		_position.y = startposition.y+2 - _size.y / 2;
+		float tmp = size.y / 7;
+		size.y = (startsize.y + 8) - _distancemoved;
+		position.y = startposition.y+2 - size.y / 2;
 	}
 }

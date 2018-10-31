@@ -136,6 +136,47 @@ namespace Engine { namespace Maths {
 			return result;
 		}
 
+		mat4 mat4::rotation(const vec3& axis)
+		{
+			mat4 result(1.0f);
+
+			if (axis.x != 0)
+			{
+				result = result * result.rotation(axis.x, vec3(1, 0, 0));
+			}
+			if (axis.y != 0)
+			{
+				result = result * result.rotation(axis.y, vec3(0, 1, 0));
+			}
+			if (axis.z != 0)
+			{
+				result = result * result.rotation(axis.z, vec3(0, 0, 1));
+			}
+			//float r = toRadians(angle);
+			//float c = cos(r);
+			//float s = sin(r);
+			//float omc = 1.0f - c;
+
+			//float x = axis.x;
+			//float y = axis.y;
+			//float z = axis.z;
+
+			//result.elements[0 + 0 * 4] = x * omc + c;
+			//result.elements[1 + 0 * 4] = y * x * omc + z * s;
+			//result.elements[2 + 0 * 4] = x * z * omc - y * s;
+
+			//result.elements[0 + 1 * 4] = x * y * omc - z * s;
+			//result.elements[1 + 1 * 4] = y * omc + c;
+			//result.elements[2 + 1 * 4] = y * z * omc + x * s;
+
+			//result.elements[0 + 2 * 4] = x * z * omc + y * s;
+			//result.elements[1 + 2 * 4] = y * z * omc - x * s;
+			//result.elements[2 + 2 * 4] = z * omc + c;
+
+			return result;
+		}
+
+
 		mat4 mat4::rotation(float angle, const vec3& axis)
 		{
 			mat4 result(1.0f);

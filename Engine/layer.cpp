@@ -1,5 +1,6 @@
 #include "layer.h"
 #include "PhysicsObject.h"
+#include <GLFW\include\glfw3.h>
 
 namespace Engine { namespace Graphics {
 
@@ -56,8 +57,22 @@ namespace Engine { namespace Graphics {
 			{
 				renderer->submit(renderable);
 			}
+			//TODO: atm t‰m‰ on hyvin vammainen. Tee renderable objectin sis‰lle mat4 joka sis‰lt‰‰ objektin sijainti datan.
+			//TODO: Puuttuu rotaatio tieto objectin sis‰lt‰;
+			std::cout << glfwGetTime() << std::endl;
+
+			renderable->rotation.x = glfwGetTime() * 15;
+			renderable->rotation.y = glfwGetTime() * 15;
+			renderable->rotation.z = glfwGetTime() * 15;
+
+			shader->setUniformMat4("ml_matrix", Maths::mat4(Maths::mat4::identity() * 
+												Maths::mat4::translation(renderable->getPosition()) * 
+												Maths::mat4::scale(Maths::vec3(renderable->getSize().x, renderable->getSize().y,0)))*
+												Maths::mat4::rotation(renderable->rotation));
+
 		}
 		renderer->end();
 		renderer->flush();
+		shader->disable();
 	}
 }}

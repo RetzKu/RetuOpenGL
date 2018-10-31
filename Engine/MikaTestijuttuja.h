@@ -30,6 +30,7 @@ public:
 		this->WindowObject = WindowObject;
 		this->CameraCoordinates = vec2(0.0f, 0.0f);
 		DefineAspectRatio();
+		startTime = std::chrono::system_clock::now();
 	}
 	vec2 get_relativeMSCoord(double x, double y);
 	double get_relative_width(double x);
@@ -44,6 +45,7 @@ public:
 	void ResetCooldown() { Cooldown = false; }
 	void RotatePlayer(Group* PlayerGroup, vec2 At, vec2 Center);
 	void RotatePlayerTimed(Group* PlayerGroup, vec2 At, vec2 Center);
+	float AutoRotation();
 	void DefineAspectRatio()
 	{
 		float ratio = (float)SCREENHEIGHT / (float)SCREENWIDTH;
@@ -62,6 +64,7 @@ private:
 	float scale = 1;
 	bool Cooldown;
 	float time;
+	std::chrono::system_clock::time_point startTime;
 };
 
 //TestClassin funktiot määritelty alapuolella
@@ -161,11 +164,25 @@ void TestClass::GetCameraMovement()
 		}
 	}
 
+	//TODO: Siirrä nämä johonkin Camera classiin; Ty
 	Maths::mat4 ortho = Maths::mat4::identity();
-	ortho = ortho.translation(vec3{CameraCoordinates.x,CameraCoordinates.y,0}) * ortho.scale(vec3{ 0.1f*scale,0.1f*scale,0.1f*scale });
+	ortho = ortho * mat4::perspective(90, 9.0f / 11.0f, 0.1f, 100000000.0f);
+	ortho = ortho * ortho.translation(vec3{CameraCoordinates.x,CameraCoordinates.y,0}) * ortho.scale(vec3{ 0.01f*scale,0.01f*scale,0.01f*scale });
+	//ortho = ortho * ortho.rotation(AutoRotation(), vec3(0, 0, 1));
+
 	ShaderObject->enable();
-	ShaderObject->setUniformMat4("vw_matrix", ortho);
+	ShaderObject->setUniformMat4("vw_matrix", Maths::mat4::translation(vec3(0, 0, -3)));
+	ShaderObject->setUniformMat4("pr_matrix", ortho);
 	ShaderObject->disable();
+}
+
+float TestClass::AutoRotation()
+{
+	std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+	std::chrono::duration<float> change = now - startTime;
+	change *= 15;
+	//std::cout << "Time: " << change.count() << std::endl;
+	return change.count();
 }
 
 void TestClass::RotatePlayer(Group* PlayerGroup, vec2 At, vec2 Center)
